@@ -209,7 +209,7 @@ public class StaffController {
 
         String email = req.getParameter("email");
 
-        WriteResult mangoResult = mango.updateFirst(new Query(Criteria.where("email").is(email)),
+        mango.updateFirst(new Query(Criteria.where("email").is(email)),
                 Update.update("sessionToken", null), Member.class);
 
         Cookie cookie = new Cookie("sessionToken", null);
