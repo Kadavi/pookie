@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="bench:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="greatbench.war">
+      <element id="artifact" artifact-name="bench:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="opencv-246" />
+          <element id="library" level="project" name="opencv-247" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

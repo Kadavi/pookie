@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="greatbench:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="greatbench.war">
+      <element id="artifact" artifact-name="greatbench:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="opencv-247" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
