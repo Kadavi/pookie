@@ -194,7 +194,7 @@
           How It Works.
         </h6>
         <p>
-          Polite Stare replaces your job of clicking continue every 3 episodes. Sure, we see people who want to turn post autoplay off completely, or in the interest of bandwidth. But around these here parts we snapped the valve off of TV, for great good.
+          Polite Stare replaces your job of clicking continue every 3 episodes. Sure, we see people who want to turn post autoplay off completely, but around these here parts we snapped the valve off of computer TV for great good.
         </p>
       </div>
       <div class="one-third column" data-scrollreveal="enter bottom and move 50px over 1s">
@@ -203,7 +203,7 @@
           Cross Platform.
         </h6>
         <p>
-          You don't need much to get going except for Java and a major browser. Actually, it's all Java and C++ to keep performance and memory cleanup at its peak. No technology soup where your usage experience is a concern. Refined to the core.
+          You don't need much to get going except for Java and a major browser. Performance and memory cleanup at its peak to go the distance. No technology soup where your usage experience is a concern. Refined to the core.
         </p>
       </div>
       <div class="one-third column" data-scrollreveal="enter right and move 50px over 1s">
@@ -227,7 +227,7 @@
           </span>
         </h1>
         <div class="head-subtext">
-          Infinite couchputation is easy. Don't reload or click, we have a cloud for that.
+            INFINITE COUCHPUTATION IS EASY. DON'T RELOAD OR CLICK, THERE'S A BETTER WAY.
         </div>
       </div>
       <div class="clear">
@@ -366,13 +366,13 @@
       <div class="eight columns" data-scrollreveal="enter left and move 150px over 1s">
         <div class="last-services1">
           <h6>
-            Light-weight.
+            Useful.
           </h6>
           <div class="icon-right1">
             &#xf0c6;
           </div>
           <p>
-            All the hard work is moved to our servers so your GPU can keep doing its own thing. Leave on for days if you want. Watch responsibly.
+            Stay updated as we improve and solidify algorithms. You can leave and come back anytime with a click of a button. No line, phone number, or process. Simple and powerful.
           </p>
         </div>
       </div>
@@ -431,7 +431,7 @@
           </span>
         </h1>
         <div class="head-subtext">
-          Deactivate your subscription instantly or come back anytime. Cancelling is easy.
+          DEACTIVATE YOUR SUBSCRIPTION INSTANTLY OR COME BACK ANYTIME. COME BACK SOON!
         </div>
       </div>
       <div class="clear">
@@ -450,36 +450,36 @@
             Month
           </h6>
           <div class="services-icon">
-            5
+              <span style="font-size: 44px;">4.20</span>
           </div>
           <p>
-            Curabitur justo urna, congue quis volutpat sed.
+              Unlock your Netflix experience
           </p>
           <div class="services-list">
             <ul class="list-services">
               <li>
                 <p>
-                  Interactive Experience
+                    Cancel instantly anytime
                 </p>
               </li>
               <li>
                 <p>
-                  User Interface
+                    Schedule your own marathons
                 </p>
               </li>
               <li>
                 <p>
-                  Search Engine Marketing
+                    Less than half the price of video streaming
                 </p>
               </li>
               <li>
                 <p>
-                  Social Media
+                    Life automation saves clicks
                 </p>
               </li>
               <li>
                 <p>
-                  Digital Installations
+                    State of the art quality tool
                 </p>
               </li>
             </ul>
