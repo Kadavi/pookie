@@ -62,7 +62,7 @@ public class StaffController {
         return new ModelAndView("account", response);
     }
 
-    @RequestMapping(value = "/api/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String register(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
         String email = req.getParameter("email");
@@ -98,7 +98,7 @@ public class StaffController {
 
             customerParams.put("status", "success");
 
-            return "account";
+            return "redirect:account";
 
         } else {
 
@@ -199,7 +199,7 @@ public class StaffController {
             response.put("email", email);
             response.put("cardLastFour", "(" + card.getType() + ") xx-" + card.getLast4() + " " + (card.getExpMonth().toString().length() <= 1 ? "0" + card.getExpMonth() : card.getExpMonth()) + "/" + card.getExpYear());
 
-            return new ModelAndView("account", response);
+            return new ModelAndView("redirect:account", response);
 
         }
     }
@@ -240,7 +240,7 @@ public class StaffController {
 
     }
 
-    @RequestMapping(value = "/api/changepassword", method = RequestMethod.POST)
+    @RequestMapping(value = "/changepassword", method = RequestMethod.POST)
     public ModelAndView changePassword(HttpServletRequest req, HttpServletResponse resp, @CookieValue(value = "sessionToken", defaultValue = "0") String sessionToken) throws Exception {
 
         Map<String, Object> response = new HashMap<String, Object>();
@@ -279,7 +279,7 @@ public class StaffController {
 
     }
 
-    @RequestMapping(value = "/api/changecard", method = RequestMethod.POST)
+    @RequestMapping(value = "/changecard", method = RequestMethod.POST)
     public ModelAndView changeCard(HttpServletRequest req,HttpServletResponse resp,
                                    @CookieValue(value = "sessionToken", defaultValue = "0") String sessionToken) throws Exception {
 
@@ -327,7 +327,7 @@ public class StaffController {
         } catch (Exception e) {
 
             Map<String, Object> planParams = new HashMap<String, Object>();
-            planParams.put("amount", 500);
+            planParams.put("amount", 420);
             planParams.put("interval", "month");
             planParams.put("name", "Basic");
             planParams.put("currency", "usd");

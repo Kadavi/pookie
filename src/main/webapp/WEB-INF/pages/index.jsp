@@ -372,7 +372,7 @@
             &#xf0c6;
           </div>
           <p>
-            Stay updated as we improve and solidify algorithms. You can leave and come back anytime with a click of a button. No line, phone number, or process. Simple and powerful.
+            Stay updated as we improve and solidify algorithms. A nice tool for TV watchers. Polite Stare is an autoplayer not a video streaming service.
           </p>
         </div>
       </div>
@@ -518,7 +518,7 @@
             </i>
           </p>
 
-          <form name="ajax-form" id="ajax-form" action="/api/register" method="post">
+          <form name="ajax-form" id="ajax-form" action="/register" method="post">
             <label for="email">
               E-Mail:
               <span class="error" id="err-email">

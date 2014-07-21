@@ -105,7 +105,7 @@
         <div class="sixteen columns" data-scrollreveal="enter bottom and move 150px over 1s">
             <div class="contact-wrap">
                 <p><span>My Account</span></p>
-                <form name="password-form" id="ajax-form" action="/api/changepassword" method="post">
+                <form name="password-form" id="ajax-form" action="/changepassword" method="post">
                     <label for="email">
                         E-Mail:
                     </label>
@@ -138,7 +138,7 @@
             <div class="contact-wrap">
                 <br>
                 <p><span>Payment Method</span></p>
-                <form name="payment-form" id="ajax-form" action="/api/changecard" method="post">
+                <form name="payment-form" id="ajax-form" action="/changecard" method="post">
                     <label for="currentCard">
                         Current Card:
                     </label>
@@ -180,13 +180,16 @@
 
 <div style="position: relative; left: 50%; float: left;">
     <!-- Download links -->
-    <a href="/resources/downloads/politestare-win.zip" style="position: relative; left: -50%;">
-        <img style="position: relative;" src="/resources/images/windows.png">
-        <div style="text-align: center; color: rgb(138, 155, 184);">Download Me!</div>
+    <a href="/resources/downloads/politestare_win.zip" style="position: relative; left: -50%;">
+        <img style="position: relative; width: 138px;" src="/resources/images/windows.png">
     </a>
-    <!--<img style="position: relative; left: -50%;" src="https://www.gravatar.com/avatar/83a4742ec21ef2fff092cf009326e126?s=32&d=identicon&r=PG" />-->
-    <!--<img style="position: relative; left: -50%;" src="https://www.gravatar.com/avatar/83a4742ec21ef2fff092cf009326e126?s=32&d=identicon&r=PG" />-->
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <img style="position: relative; width: 138px; left: -50%;" src="/resources/images/maccomingsoon.png">
+
 </div>
+<br>
+<br>
 <br>
 <br>
 <br>
