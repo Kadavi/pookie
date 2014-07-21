@@ -36,6 +36,11 @@ public class StaffController {
         return "index";
     }
 
+    @RequestMapping(value = "/forgot", method = RequestMethod.GET)
+    public String forgot(HttpServletRequest req, HttpServletResponse resp) {
+        return "forgot";
+    }
+
     @RequestMapping(value = "/account", method = RequestMethod.GET)
     public ModelAndView account(HttpServletRequest req, HttpServletResponse resp, @CookieValue(value = "sessionToken", defaultValue = "0") String sessionToken) throws Exception {
 
@@ -85,7 +90,7 @@ public class StaffController {
         if (isEmailUnique) {
             Customer newMember = Customer.create(customerParams);
 
-            if (newMember.getEmail().equalsIgnoreCase(email)) {
+            if (newMember.getEmail().equals(email)) {
 
                 Map<String, Object> subscriptionParams = new HashMap<String, Object>();
                 subscriptionParams.put("plan", "basic");
@@ -207,20 +212,20 @@ public class StaffController {
 
         String email = req.getParameter("email");
 
-        WriteResult mangoResult = mango.updateFirst(new Query(Criteria.where("email").is(email)),
-                Update.update("resetCode", Member.randomResetCode()), Member.class);
-
-        mail.sendMail(new String[]{email},
-                "Welcome to the Banch",
-                "Dear %s,<br><br>Confirm your membership. <a href=\"http://www.neopets.com/?email=kanvus@gmail.com&code=TREre53\">LOOK!</a><br><br>Thanks,<br/>%s",
-                new String[]{"dahling", "Polite Stare"});
+        Member member = mango.findOne(new Query(Criteria.where("email").is(email)), Member.class);
 
         Map<String, Object> response = new HashMap<String, Object>();
 
-        response.put("status", "success");
+        if (member != null) {
+            mail.sendMail(new String[]{email},
+                    "Polite Stare: Forgot Password",
+                    "Dear %s,<br><br>You submitted a password recovery request sent to this email.<br>Your password: <a href=\"http://www.politestare.com/login\"><strong>%s</strong></a><br><br>Thanks,<br/>%s",
+                    new String[]{email, member.password, "Polite Stare"});
 
-        return new ModelAndView("account", response);
+            response.put("message", "An email was sent to your inbox containing password information.");
+        }
 
+        return new ModelAndView("login", response);
     }
 
     @RequestMapping(value = "/changepassword", method = RequestMethod.POST)

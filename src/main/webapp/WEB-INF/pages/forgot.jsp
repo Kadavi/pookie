@@ -93,8 +93,6 @@
     </div>
     <div class="just_pattern1">
     </div>
-    <div class="">
-    </div>
     <div class="container z-index">
         <br>
         <br>
@@ -103,24 +101,19 @@
             <div id="topMessage" style="color: red;">${message}</div><br>
             <div class="contact-wrap">
                 <p>
-                    <span>Welcome Back</span>
+                    <span>Forgot Password</span>
                 </p>
-                <form name="ajax-form" id="ajax-form" action="/login" method="post">
+                <form name="ajax-form" id="ajax-form" action="/forgot" method="post">
                     <label for="email">
                         E-Mail:
                     </label>
                     <input name="email" id="email" type="text" />
-                    <label for="password">
-                        Password:
-                    </label>
-                    <input name="password" id="password" type="text" />
                     <div id="button-con">
-                        <button id="signin">
-                            Sign In
+                        <button id="forgot">
+                            Send
                         </button>
                     </div>
                 </form>
-                <a href="/forgot" style="float: right;">Forgot password?</a>
             </div>
         </div>
     </div>
@@ -129,7 +122,6 @@
 </div>
 </div>
 <div id="footer">
-
     <div class="container">
         <div class="sixteen columns">
             <p>
@@ -199,7 +191,7 @@
 <script type="text/javascript">
 
     $(document).ready(function(){
-        $('#signin').click(function(e) {
+        $('#forgot').click(function(e) {
             e.stopPropagation();
             e.preventDefault();
             var $form = $(this).closest('form');

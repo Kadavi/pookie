@@ -123,7 +123,7 @@
                     </label>
                     <input name="confirmPassword" id="confirmPassword" type="text" />
                     <div id="button-con">
-                        <button class="send_message" id="changePassword">
+                        <button id="changePassword">
                             Change Password
                         </button>
                     </div>
@@ -143,7 +143,7 @@
                     <input name="cardLastFour" id="cardLastFour" type="hidden" value="${cardLastFour}" />
                     <input name="serviceStatus" id="serviceStatus" type="hidden" value="${serviceStatus}" />
                     <div id="button-con">
-                        <button class="send_message" id="switchStatus">
+                        <button id="switchStatus">
                             Switch
                         </button>
                     </div>
@@ -167,7 +167,7 @@
                     <input name="cardLastFour" id="cardLastFour" type="hidden" value="${cardLastFour}" />
                     <input name="serviceStatus" id="serviceStatus" type="hidden" value="${serviceStatus}" />
                     <div id="button-con">
-                        <button class="send_message" id="changeCard">
+                        <button id="changeCard">
                             Change Cards
                         </button>
                     </div>
@@ -180,11 +180,9 @@
     <br>
     <br>
 </div>
-
 </div>
 <br>
 <br>
-
 
 <div style="position: relative; left: 50%; float: left;">
     <!-- Download links -->
@@ -204,7 +202,6 @@
 <br>
 <br>
 <div id="footer">
-
     <div class="container">
         <div class="sixteen columns">
             <p>
@@ -223,70 +220,6 @@
         </div>
     </div>
 </div>
-
-
-<!-- Switch Panel -->
-<div id="switch">
-    <div class="content-switcher">
-
-        <p>
-            Color Options:
-        </p>
-        <ul class="header">
-
-            <li>
-                <a href="#" onClick="setActiveStyleSheet('orange'); return false;" class="button color switch" style="background-color:#e67e22">
-                </a>
-            </li>
-            <li>
-                <a href="#" onClick="setActiveStyleSheet('green'); return false;" class="button color switch" style="background-color:#2ecc71">
-                </a>
-            </li>
-            <li>
-                <a href="#" onClick="setActiveStyleSheet('red'); return false;" class="button color switch" style="background-color:#e74c3c">
-                </a>
-            </li>
-            <li>
-                <a href="#" onClick="setActiveStyleSheet('blue'); return false;" class="button color switch" style="background-color:#3498db">
-                </a>
-            </li>
-            <li>
-                <a href="#" onClick="setActiveStyleSheet('yellow'); return false;" class="button color switch" style="background-color:#f1c40f">
-                </a>
-            </li>
-
-        </ul>
-
-        <div class="clear">
-        </div>
-
-        <p>
-            Page Templates:
-        </p>
-
-        <div class="home-options">
-            <a href="http://ivang-design.com/chronos/slider/">
-                Slider Version
-            </a>
-            <a href="http://ivang-design.com/chronos/parallax/">
-                Parallax Version
-            </a>
-            <a href="http://ivang-design.com/chronos/light/">
-                Light Version
-            </a>
-        </div>
-
-        <div id="hide">
-            <img src="/resources/images/close.png" alt="" />
-
-        </div>
-    </div>
-</div>
-<div id="show" style="display: none;">
-    <div id="setting">
-    </div>
-</div>
-<!-- Switch Panel -->
 
 <script type="text/javascript" src="/resources/js/jquery.js">
 </script>
