@@ -102,9 +102,10 @@
         <br>
         <br>
         <br>
+        <div style="font-color: red;">${message}</div>
         <div class="sixteen columns" data-scrollreveal="enter bottom and move 150px over 1s">
             <div class="contact-wrap">
-                <p><span>My Account</span></p>
+                <p><span>My Account${message}</span></p>
                 <form name="password-form" id="ajax-form" action="/changepassword" method="post">
                     <label for="email">
                         E-Mail:
@@ -131,8 +132,40 @@
                     </div>
                 </form>
                 <div id="ajaxsuccess">
+                    Password changed request sent.
+                </div>
+            </div>
+
+            <div class="contact-wrap">
+                <br>
+                <p><span>Service Status</span></p>
+                <form name="payment-form" id="ajax-form" action="/changecard" method="post">
+                    <label for="currentCard">
+                        Current Card:
+                    </label>
+                    <input name="currentCard" id="currentCard" type="text" disabled value="${cardLastFour}" />
+                    <label for="ccNumber">
+                        Add New Card:
+                    </label>
+                    <div style="width: 100%;">
+                        <input style="width: 44%;" id="ccNumber" data-stripe="number" size="20" maxlength="20" type="text" placeholder="Card Number"/>
+                        <input style="width: 11%;" id="ccMonth" data-stripe="exp-month" size="2" maxlength="2" type="text" placeholder="MM"/>
+                        <input style="width: 11%;" id="ccYear" data-stripe="exp-year" size="4" maxlength="4" type="text" placeholder="YYYY"/>
+                        <input style="width: 13%;" id="cvcNumber" data-stripe="cvc" size="4" maxlength="4" type="text" placeholder="CVC"/>
+                    </div>
+                    <input name="email" id="email" type="hidden" disabled value="${email}" />
+                    <div id="button-con">
+                        <button class="send_message" id="changeCard">
+                            Change Cards
+                        </button>
+                    </div>
+                    <div class="error">
+                    </div>
+                </form>
+                <div id="ajaxsuccess">
                     Successfully sent!
                 </div>
+                <br>
             </div>
 
             <div class="contact-wrap">
@@ -342,7 +375,7 @@
                 document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
             }
 
-            window.location.href = "http://localhost:8080/account";
+            window.location.href = "/logout";
 
             return false;
         });

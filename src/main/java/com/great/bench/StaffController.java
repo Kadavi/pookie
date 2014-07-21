@@ -109,7 +109,7 @@ public class StaffController {
         }
     }
 
-    @RequestMapping(value = "/api/deactivate", method = RequestMethod.POST)
+    @RequestMapping(value = "/deactivate", method = RequestMethod.POST)
     public ModelAndView deactivate(HttpServletRequest req, HttpServletResponse resp, @CookieValue(value = "sessionToken", defaultValue = "0") String sessionToken) throws Exception {
         Map<String, Object> response = new HashMap<String, Object>();
 
@@ -128,7 +128,7 @@ public class StaffController {
         return new ModelAndView("account", response);
     }
 
-    @RequestMapping(value = "/api/reactivate", method = RequestMethod.POST)
+    @RequestMapping(value = "/reactivate", method = RequestMethod.POST)
     public ModelAndView reactivate(HttpServletRequest req, HttpServletResponse resp, @CookieValue(value = "sessionToken", defaultValue = "0") String sessionToken) throws Exception {
 
         String email = req.getParameter("email");
@@ -163,16 +163,13 @@ public class StaffController {
             resp.addCookie(cookie);
 
             return "SessionToken: " + user.sessionToken;
-
         } else {
-
             return "error";
-
         }
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ModelAndView loginWeb(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+    public String loginWeb(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
         Map<String, Object> response = new HashMap<String, Object>();
 
@@ -182,9 +179,7 @@ public class StaffController {
         Member user = mango.findOne(new Query(Criteria.where("email").is(email).and("password").is(password)), Member.class);
 
         if (user == null) {
-
-            return new ModelAndView("login", null);
-
+            return "redirect:login";
         } else {
 
             user.sessionToken = Member.randomSessionToken();
@@ -196,16 +191,12 @@ public class StaffController {
             Cookie cookie = new Cookie("sessionToken", user.sessionToken);
             resp.addCookie(cookie);
 
-            response.put("email", email);
-            response.put("cardLastFour", "(" + card.getType() + ") xx-" + card.getLast4() + " " + (card.getExpMonth().toString().length() <= 1 ? "0" + card.getExpMonth() : card.getExpMonth()) + "/" + card.getExpYear());
-
-            return new ModelAndView("redirect:account", response);
-
+            return "redirect:account";
         }
     }
 
-    @RequestMapping(value = "/api/logout", method = RequestMethod.POST)
-    public ModelAndView logout(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
         String email = req.getParameter("email");
 
@@ -215,11 +206,10 @@ public class StaffController {
         Cookie cookie = new Cookie("sessionToken", null);
         resp.addCookie(cookie);
 
-        return new ModelAndView("account", null);
-
+        return "redirect:account";
     }
 
-    @RequestMapping(value = "/api/forgot", method = RequestMethod.POST)
+    @RequestMapping(value = "/forgot", method = RequestMethod.POST)
     public ModelAndView sendForgotPasswordEmail(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
         String email = req.getParameter("email");
@@ -250,7 +240,7 @@ public class StaffController {
         String newPassword = req.getParameter("password");
         String confirmPassword = req.getParameter("confirmPassword");
 
-        Member member = mango.findOne(new Query(Criteria.where("email").is(email).and("sessionToken").is(sessionToken)), Member.class);
+        Member member = mango.findOne(new Query(Criteria.where("email").is(email).and("sessionToken").is(sessionToken).and("password").is(oldPassword)), Member.class);
 
         try {
 
@@ -264,8 +254,11 @@ public class StaffController {
                 Cookie cookie = new Cookie("sessionToken", sessionToken);
                 resp.addCookie(cookie);
 
+                response.put("message", "Your password has been changed.");
                 response.put("email", email);
                 response.put("cardLastFour", "(" + card.getType() + ") xx-" + card.getLast4() + " " + (card.getExpMonth().toString().length() <= 1 ? "0" + card.getExpMonth() : card.getExpMonth()) + "/" + card.getExpYear());
+            } else {
+                response.put("message", "Password change failed. Please try again.");
             }
 
         } catch (Exception e) {
