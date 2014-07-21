@@ -70,7 +70,6 @@
                     </a>
                 </li>
                 <li>
-
                     <a class="scroll" href="/#services">
                         Pricing
                     </a>
@@ -102,10 +101,10 @@
         <br>
         <br>
         <br>
-        <div style="font-color: red;">${message}</div>
         <div class="sixteen columns" data-scrollreveal="enter bottom and move 150px over 1s">
+            <div id="topMessage" style="color: red;">${message}</div><br>
             <div class="contact-wrap">
-                <p><span>My Account${message}</span></p>
+                <p><span>My Account</span></p>
                 <form name="password-form" id="ajax-form" action="/changepassword" method="post">
                     <label for="email">
                         E-Mail:
@@ -128,49 +127,28 @@
                             Change Password
                         </button>
                     </div>
-                    <div class="error">
-                    </div>
+                    <input name="email" id="email" type="hidden" value="${email}" />
+                    <input name="cardLastFour" id="cardLastFour" type="hidden" value="${cardLastFour}" />
+                    <input name="serviceStatus" id="serviceStatus" type="hidden" value="${serviceStatus}" />
                 </form>
-                <div id="ajaxsuccess">
-                    Password changed request sent.
-                </div>
-            </div>
-
-            <div class="contact-wrap">
-                <br>
-                <p><span>Service Status</span></p>
-                <form name="payment-form" id="ajax-form" action="/changecard" method="post">
-                    <label for="currentCard">
-                        Current Card:
-                    </label>
-                    <input name="currentCard" id="currentCard" type="text" disabled value="${cardLastFour}" />
-                    <label for="ccNumber">
-                        Add New Card:
-                    </label>
-                    <div style="width: 100%;">
-                        <input style="width: 44%;" id="ccNumber" data-stripe="number" size="20" maxlength="20" type="text" placeholder="Card Number"/>
-                        <input style="width: 11%;" id="ccMonth" data-stripe="exp-month" size="2" maxlength="2" type="text" placeholder="MM"/>
-                        <input style="width: 11%;" id="ccYear" data-stripe="exp-year" size="4" maxlength="4" type="text" placeholder="YYYY"/>
-                        <input style="width: 13%;" id="cvcNumber" data-stripe="cvc" size="4" maxlength="4" type="text" placeholder="CVC"/>
-                    </div>
-                    <input name="email" id="email" type="hidden" disabled value="${email}" />
-                    <div id="button-con">
-                        <button class="send_message" id="changeCard">
-                            Change Cards
-                        </button>
-                    </div>
-                    <div class="error">
-                    </div>
-                </form>
-                <div id="ajaxsuccess">
-                    Successfully sent!
-                </div>
-                <br>
             </div>
 
             <div class="contact-wrap">
                 <br>
                 <p><span>Payment Method</span></p>
+                <form name="payment-form" id="ajax-form" action="/status" method="post">
+                    <label for="serviceStatus">Service Status:</label>
+                    <input name="serviceStatus" id="serviceStatus" type="text" disabled value="${serviceStatus}" />
+                    <input name="email" id="email" type="hidden" value="${email}" />
+                    <input name="cardLastFour" id="cardLastFour" type="hidden" value="${cardLastFour}" />
+                    <input name="serviceStatus" id="serviceStatus" type="hidden" value="${serviceStatus}" />
+                    <div id="button-con">
+                        <button class="send_message" id="switchStatus">
+                            Switch
+                        </button>
+                    </div>
+                </form>
+                <br>
                 <form name="payment-form" id="ajax-form" action="/changecard" method="post">
                     <label for="currentCard">
                         Current Card:
@@ -185,18 +163,15 @@
                         <input style="width: 11%;" id="ccYear" data-stripe="exp-year" size="4" maxlength="4" type="text" placeholder="YYYY"/>
                         <input style="width: 13%;" id="cvcNumber" data-stripe="cvc" size="4" maxlength="4" type="text" placeholder="CVC"/>
                     </div>
-                    <input name="email" id="email" type="hidden" disabled value="${email}" />
+                    <input name="email" id="email" type="hidden" value="${email}" />
+                    <input name="cardLastFour" id="cardLastFour" type="hidden" value="${cardLastFour}" />
+                    <input name="serviceStatus" id="serviceStatus" type="hidden" value="${serviceStatus}" />
                     <div id="button-con">
                         <button class="send_message" id="changeCard">
                             Change Cards
                         </button>
                     </div>
-                    <div class="error">
-                    </div>
                 </form>
-                <div id="ajaxsuccess">
-                    Successfully sent!
-                </div>
                 <br>
             </div>
         </div>
@@ -391,19 +366,36 @@
             var $form = $('form[name="payment-form"]');
 
             if (response.error) {
-                // Show the errors on the form
-                $form.find('.error').text(response.error.message);
-                $form.find('button').prop('disabled', false);
+                window.scrollTo(0, 0);
+                $("#topMessage").text("Please enter valid card information.");
             } else {
                 // token contains id, last4, and card type
                 var token = response.id;
-                // Insert the token into the form so it gets submitted to the server
 
+                // Insert the token into the form so it gets submitted to the server
                 $form.append($('<input type="hidden" name="stripeToken" />').val(token));
                 // and re-submit
                 $form.submit();
             }
         };
+
+        $('#switchStatus').click(function(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            var $form = $(this).closest('form');
+
+            // Disable the submit button to prevent repeated clicks
+            $('button').prop('disabled', true);
+
+            setTimeout(function() {
+                $('button').prop('disabled', false);
+            }, 3000);
+
+            $form.submit();
+
+            // Prevent the form from submitting with the default action
+            return false;
+        });
 
         $('#changePassword').click(function(e) {
             e.stopPropagation();
@@ -411,33 +403,36 @@
             var $form = $(this).closest('form');
 
             // Disable the submit button to prevent repeated clicks
-            $form.find('button').prop('disabled', true);
+            $('button').prop('disabled', true);
+
+            setTimeout(function() {
+                $('button').prop('disabled', false);
+            }, 3000);
 
             $form.submit();
 
+            // Prevent the form from submitting with the default action
+            return false;
+        });
+
+        $('#changeCard').click(function(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            var $form = $(this).closest('form');
+
+            // Disable the submit button to prevent repeated clicks
+            $('button').prop('disabled', true);
+
             setTimeout(function() {
-                $form.find('button').prop('disabled', false);
-            }, 5000);
+                $('button').prop('disabled', false);
+            }, 3000);
+
+            Stripe.card.createToken($form, stripeResponseHandler);
 
             // Prevent the form from submitting with the default action
             return false;
         });
     });
-
-    $('#changeCard').click(function(e) {
-        e.stopPropagation();
-        e.preventDefault();
-        var $form = $(this).closest('form');
-
-        // Disable the submit button to prevent repeated clicks
-        $form.find('button').prop('disabled', true);
-
-        Stripe.card.createToken($form, stripeResponseHandler);
-
-        // Prevent the form from submitting with the default action
-        return false;
-    });
-
 </script>
 </body>
 
