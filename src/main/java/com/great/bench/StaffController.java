@@ -74,10 +74,13 @@ public class StaffController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+    public ModelAndView register(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+
+        Map<String, Object> response = new HashMap<String, Object>();
 
         String email = req.getParameter("email");
         String password = req.getParameter("password");
+        String confirmPassword = req.getParameter("confirmPassword");
         String stripeToken = req.getParameter("stripeToken");
 
         Map<String, Object> customerParams = new HashMap<String, Object>();
@@ -87,7 +90,12 @@ public class StaffController {
 
         boolean isEmailUnique = !(mango.exists(new Query(Criteria.where("email").is(email)), "user"));
 
-        if (isEmailUnique) {
+        if (isEmailUnique &&
+            email.contains("@") &&
+            email.contains(".") &&
+            password.length() >= 6 &&
+            confirmPassword.equals(password)) {
+
             Customer newMember = Customer.create(customerParams);
 
             if (newMember.getEmail().equals(email)) {
@@ -105,9 +113,11 @@ public class StaffController {
                 resp.addCookie(cookie);
             }
 
-            return "redirect:account";
+            return new ModelAndView("redirect:account", null);
         } else {
-            return "index";
+            response.put("message", "There was a problem with your input. Please try again!");
+
+            return new ModelAndView("index", response);
         }
     }
 

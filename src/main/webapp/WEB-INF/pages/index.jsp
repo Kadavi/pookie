@@ -521,33 +521,18 @@
           <form name="ajax-form" id="ajax-form" action="/register" method="post">
             <label for="email">
               E-Mail:
-              <span class="error" id="err-email">
-                please enter e-mail
-              </span>
-              <span class="error" id="err-emailvld">
-                e-mail is not a valid format
-              </span>
             </label>
             <input name="email" id="email" type="text" placeholder="your@email.com" />
             <label for="password">
               Password:
-              <span class="error" id="err-name">
-                please enter password
-              </span>
             </label>
-            <input name="password" id="password" type="text" placeholder="6 characters minimum" />
+            <input name="password" id="password" type="text" placeholder="at least 6 characters" />
             <label for="confirmPassword">
               Confirm Password:
-              <span class="error" id="err-name">
-                please confirm password
-              </span>
             </label>
             <input name="confirmPassword" id="confirmPassword" type="text" placeholder="repeat to verify" />
             <label for="ccNumber">
               Credit Card:
-              <span class="error" id="err-name">
-                please enter a valid credit card number
-              </span>
             </label>
             <div style="width: 100%;">
               <input style="width: 44%;" id="ccNumber" data-stripe="number" size="20" maxlength="20" type="text" placeholder="Card Number"/>
@@ -560,16 +545,10 @@
                 Submit
               </button>
             </div>
-            <div class="error"></div>
           </form>
-
-          <div id="ajaxsuccess">
-            Successfully sent!
-          </div>
-          
         </div>
+        <div id="topMessage" style="color: red;">${message}</div><br>
       </div>
-      
     </div>
       <br><br><br><br><br>
     <a class="button-map close-map" style="display: none;">
