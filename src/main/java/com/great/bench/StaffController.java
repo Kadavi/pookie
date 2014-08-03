@@ -31,6 +31,8 @@ public class StaffController {
     @Autowired
     private MongoTemplate mango;
 
+    // TODO: Add exception handler pages and switch to mongolab
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(HttpServletRequest req, HttpServletResponse resp) {
         return "index";
